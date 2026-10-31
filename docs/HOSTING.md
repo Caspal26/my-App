@@ -6,7 +6,7 @@ This repository includes [render.yaml](../render.yaml), a deployment Blueprint. 
 
 ## 1. Put the code in your GitHub repository
 
-Your selected repository is `Caspal26/my-App`. The code built in this workspace must be committed and pushed before Render can read it. No push has been performed by this task.
+Your selected repository is `Caspal26/my-App`. The app code has been pushed to the repository’s `main` branch. Render can read that branch once your Render account has access to the repository. Commit and push future changes before redeploying.
 
 If you have the project on your computer, GitHub Desktop can publish the changes to that repository. With Git from the project directory, the equivalent is:
 
