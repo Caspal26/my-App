@@ -1,0 +1,43 @@
+{
+  "name": "founders-morning",
+  "version": "1.0.0",
+  "description": "A private, researched morning reading for Caspal.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node --use-env-proxy src/server.mjs",
+    "dev": "node --use-env-proxy --watch src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "test:browser": "playwright test",
+    "simulate": "node scripts/simulate.mjs",
+    "init": "node scripts/init.mjs",
+    "research": "node --use-env-proxy scripts/research-now.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caspal26/my-App.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Caspal26/my-App/issues"
+  },
+  "homepage": "https://github.com/Caspal26/my-App#readme",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

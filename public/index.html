@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f6f2e9"><meta name="description" content="One true founder story, one philosophical thought, and a little room to begin again.">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/icons/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icons/icon-192.png"><link rel="stylesheet" href="/styles.css">
+<title>Founder’s Morning</title><script src="/app.js" defer></script>
+</head>
+<body>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<div id="loading" class="initial-loading"><div class="sun-mark">◒</div><p>A little room to begin.</p></div>
+<main id="auth" class="auth-screen" hidden>
+ <a class="brand" href="/" aria-label="Founder’s Morning home"><span class="brand-symbol">◒</span><span>Founder’s<br>Morning<span class="brand-dot">.</span></span></a>
+ <div class="auth-copy"><p class="eyebrow">A PRIVATE DAILY PRACTICE</p><h1>For the days<br>in between.</h1><p>One true founder story. One philosophy quote.<br>One small thought to carry into your day.</p></div>
+ <form id="auth-form" class="auth-form"><h2 id="auth-title">Welcome back, Caspal.</h2><label for="password">Your private passphrase</label><input id="password" name="password" type="password" autocomplete="current-password" required minlength="12"><button class="button primary" type="submit" id="auth-submit">Open my morning <span aria-hidden="true">→</span></button><p id="auth-help" class="muted small">Your readings are just for you.</p><p id="auth-error" class="form-error" role="alert"></p></form>
+ <div class="auth-footer">MADE FOR A LIFE THAT’S STILL BEING BUILT.</div>
+</main>
+<div id="app" hidden>
+<header class="site-header"><a class="brand" href="/" data-nav="today" aria-label="Founder’s Morning home"><span class="brand-symbol">◒</span><span>Founder’s<br>Morning<span class="brand-dot">.</span></span></a><nav aria-label="Main navigation"><button data-nav="today" class="nav-item active">Today <span class="nav-dot"></span></button><button data-nav="archive" class="nav-item">Archive</button><button data-nav="favourites" class="nav-item">Saved</button></nav><button id="settings-toggle" class="settings-toggle" aria-label="Open settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 17h16M9 4v6m6 4v6"/></svg><span>My ritual</span></button></header>
+<div id="offline-banner" class="offline-banner" hidden>You’re offline. Your opened readings are here with you.</div>
+<main id="main-content" tabindex="-1"></main>
+<footer class="site-footer"><span>Built for the long middle.</span><span>NAIROBI · ONE MORNING AT A TIME</span></footer>
+<div class="encouragement-wrap"><button id="encouragement-button" class="encouragement-button"><span class="little-star" aria-hidden="true">✳︎</span><span>I need encouragement now</span><span aria-hidden="true">→</span></button><p>A small pause. Whenever you need one.</p></div>
+</div>
+<dialog id="reflection-dialog" class="reflection-dialog"><button class="dialog-close" data-close="reflection-dialog" aria-label="Close reflection">×</button><span class="little-star">✳︎</span><p class="eyebrow">A MOMENT FOR YOU</p><h2>You can take this<br>one step at a time.</h2><div id="reflection-content" class="reflection-content"></div><p class="dialog-footnote">Your daily reading stays right where it is.</p></dialog>
+<dialog id="install-dialog" class="install-dialog"><button class="dialog-close" data-close="install-dialog" aria-label="Close installation instructions">×</button><p class="eyebrow">YOUR MORNING, CLOSE AT HAND</p><h2>A place on your<br>home screen.</h2><p>On your Android phone, open this site in Chrome.</p><ol><li>Tap the browser’s <strong>⋮ menu</strong>.</li><li>Choose <strong>Install app</strong> or <strong>Add to Home screen</strong>.</li><li>Open Founder’s Morning and enable notifications in <strong>My ritual</strong>.</li></ol><p class="muted small">Installation and notifications need a secure HTTPS connection. Opened readings stay available offline on this device.</p><button id="native-install" class="button primary" hidden>Install Founder’s Morning →</button></dialog>
+</body></html>

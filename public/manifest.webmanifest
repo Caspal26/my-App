@@ -1,0 +1,4 @@
+{
+ "id":"/", "name":"Founder’s Morning", "short_name":"Morning", "description":"A true founder story, a philosophical thought, and one small step for your day.", "start_url":"/", "scope":"/", "display":"standalone", "orientation":"portrait-primary", "background_color":"#f6f2e9", "theme_color":"#f6f2e9", "lang":"en", "categories":["books","lifestyle"],
+ "icons":[{"src":"/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+}

@@ -1,0 +1,272 @@
+[
+  {
+    "id": "adii-the-argument-he-outgrew",
+    "title": "The argument Adii outgrew",
+    "founder": "Adii Pienaar",
+    "company": "WooThemes",
+    "event": "WooThemes adopts the GPL after its founder reconsiders his defensive view of open-source licensing",
+    "eventDate": "2009-06",
+    "eventKey": "woothemes-adii-pienaar-gpl-license-change-2009",
+    "industry": "Software and design",
+    "geography": "South Africa",
+    "tradition": "Confucianism",
+    "quote": {
+      "text": "When you have faults, do not fear to abandon them.",
+      "author": "Confucius",
+      "work": "Analects",
+      "section": "Book I, chapter VIII, paragraph 4; James Legge translation",
+      "url": "https://raw.githubusercontent.com/GITenberg/The-Analects-of-Confucius-from-the-Chinese-Classics_3330/master/3330.txt"
+    },
+    "paragraphs": [
+      "In the early years of WooThemes, Adii Pienaar heard a threat inside an argument about software licensing. The South African co-founder was trying to build a business selling WordPress themes. When people insisted that themes should use WordPress’s open-source licence, the GPL, he understood them to mean that he should not be allowed to make money from his work.",
+      "That is how he described it in a 2014 oral-history interview. His concern was recognisable: if customers could legally share what they bought, what protected the business? He had put time and skill into designs. He wanted that work to support something real. From that position, a discussion about users’ freedoms could feel like a discussion about taking his future away.",
+      "But those were different questions. The GPL grants freedoms to use, modify and redistribute software; it does not prohibit charging for it. Commercial theme sellers could sell a useful package of design, updates and support while honouring the licence. Brian Gardner had already made that change with Revolution. Other theme businesses watched to see what would happen.",
+      "In June 2009, WooThemes moved to the GPL. The WordPress project’s published history records the change alongside iThemes. Looking back, Pienaar called his earlier belief that Matt Mullenweg did not want him to make money “absolutely absurd.” He described a communication gap, and acknowledged that his own defensiveness and appetite for online arguments had made it worse.",
+      "The useful part of this episode is not that one side won a debate. A founder was able to revise the explanation he had been living inside. His wish to earn a living did not have to disappear. His account of what other people meant could change. By the interview, he described the GPL as a non-issue for him.",
+      "Confucius’s line here makes correction sound like an ordinary responsibility. That is a demanding kindness: you are allowed to have been mistaken, and you are still responsible for what you do once you see it. Abandoning a position need not mean abandoning yourself.",
+      "Caspal, work in a laboratory teaches a particular respect for corrected results. You do not improve a result by defending the first reading more passionately. Building talQen may sometimes ask for the same steadiness. A colleague’s objection, or a customer’s unexpected response, might contain useful information even when it arrives awkwardly. You can listen without making an immediate promise to change everything.",
+      "If you are tired today, you do not need to reopen every decision. One small assumption is enough. There is room to be both committed to the work and less certain about your first explanation of it."
+    ],
+    "invitation": "Ask one colleague: “What might I be misunderstanding about this?” Then listen before explaining your position.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Resources/interviews/2014_03_05_Pienaar.txt",
+        "title": "Adii Pienaar oral history, March 2014 — WordPress archive",
+        "kind": "story",
+        "excerpt": "the message that I always got was, “Matt doesn’t want me to make money.” Again, in hindsight, that’s absolutely absurd, but it had that kind of defensive nature to it.\n\nThe GPL to me today is a non-issue, but hence why I say back then there was just this massive miscommunication around the issues at hand.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Content/Part%205/31-themes-are-gpl-too.md",
+        "title": "Milestones, chapter 31: Themes are GPL too",
+        "kind": "story",
+        "excerpt": "In April 2009, Spectacu.la, the theme shop that first posted about themes being removed from the repo, announced that it was going fully GPL. It was followed in June by iThemes and WooThemes.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Analects-of-Confucius-from-the-Chinese-Classics_3330/master/3330.txt",
+        "title": "Analects I.8.4 — James Legge, Project Gutenberg text via GITenberg",
+        "kind": "quote",
+        "excerpt": "4. 'When you have faults, do not fear to abandon them.'",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      }
+    ],
+    "researchedAt": "2026-10-31T19:07:34.642500Z"
+  },
+  {
+    "id": "franklin-the-two-friends-who-kept-the-press",
+    "title": "The two friends who kept the press",
+    "founder": "Benjamin Franklin",
+    "company": "Franklin’s printing business",
+    "event": "Franklin accepts help to resolve printing-shop debts and buys out Hugh Meredith’s partnership",
+    "eventDate": "c. 1729–1730",
+    "eventKey": "benjamin-franklin-hugh-meredith-partnership-debt-coleman-grace-1730",
+    "industry": "Printing and publishing",
+    "geography": "Philadelphia, colonial North America",
+    "tradition": "Aristotelian ethics",
+    "quote": {
+      "text": "no one would choose to live without friends though he should have all the other good things in the world",
+      "author": "Aristotle",
+      "work": "Nicomachean Ethics",
+      "section": "Book VIII, chapter 1, 1155a; D. P. Chase translation. Clause excerpt.",
+      "url": "https://raw.githubusercontent.com/GITenberg/The-Ethics-of-Aristotle_8438/master/8438-8.txt"
+    },
+    "paragraphs": [
+      "Benjamin Franklin’s printing business was in danger of losing the tools that made it a business. A merchant was owed money for the printing equipment. The expected funding had not all arrived, and the merchant sued. If the debt could not be paid, the press and type could be sold to settle it.",
+      "This was the small Philadelphia shop Franklin had started with Hugh Meredith. In his autobiography, Franklin recalled that Meredith’s father had supplied a hundred pounds, but another hundred remained due. Work and prospects were not the same thing as cash available on the day a creditor needed it. That distinction was becoming painfully practical.",
+      "Two friends, William Coleman and Robert Grace, approached Franklin separately. According to his account, each offered enough money to help him take over the business. Neither knew of the other’s offer. There was a condition to the proposed rescue: they did not want him to remain in the existing partnership.",
+      "Franklin did not immediately agree. He believed he owed the Meredith family consideration for what they had already done, and would have done if they could. He wanted to leave room for the original arrangement to work. Eventually he spoke directly with his partner about their circumstances. Meredith said his father really could not provide more money, and that he wanted to return to farming.",
+      "They agreed terms in writing. Franklin would take on the company’s debts, reimburse the money Meredith’s father had advanced, and make the other agreed payments. He then accepted help from both friends, taking half of what he needed from each, paid the debts and continued in his own name. His memoir places this around 1729; the later historian Holland Thompson describes the transition at age twenty-four, pointing to about 1730. The exact year is less secure than the sequence.",
+      "Aristotle’s discussion of friendship here puts something larger beside the financial rescue. Friends are not simply another form of working capital. Their value does not begin when a business needs saving, and helping someone does not make the helper an instrument of that person’s ambitions. The account is moving partly because Franklin remembered the kindness as kindness.",
+      "Caspal, it is easy for building to become a private accounting exercise: what you owe, what you can finish, what you must somehow find. This story has a negotiation, an agreement and borrowed money in it. It also has people who noticed a difficulty and came closer.",
+      "You may not need a financial rescue today. You might need someone to read a difficult message, think through a decision, or sit with you for a few minutes without requiring a progress report. Accepting that company does not make your commitment to talQen smaller. There is a person doing this work, and that person deserves friendships with room for more than the work."
+    ],
+    "invitation": "Ask a trusted friend for ten minutes of company or perspective. You do not need to turn the conversation into a progress update.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/Autobiography-of-Benjamin-Franklin_20203/master/20203.txt",
+        "title": "Benjamin Franklin, Autobiography, chapter VII — Project Gutenberg via GITenberg",
+        "kind": "story",
+        "excerpt": "These two friends were William Coleman and Robert Grace.\n\nI took half of what each had offered and I wanted of one, and half of the other; paid off the company’s debts, and went on with the business in my own name, advertising that the partnership was dissolved. I think this was in or about the year 1729.",
+        "retrievedAt": "2026-10-31T19:12:17.397162Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Age-of-Invention--A-Chronicle-of-Mechanical-Conquest_2900/master/2900.txt",
+        "title": "Holland Thompson, The Age of Invention (1921), chapter I — Project Gutenberg via GITenberg",
+        "kind": "story",
+        "excerpt": "The father of an apprentice at Keimer’s furnished the money to buy a printing outfit for his son and Franklin, but the son soon sold his share, and Benjamin Franklin, Printer, was fairly established in business at the age of twenty-four.",
+        "retrievedAt": "2026-10-31T19:12:17.397162Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Ethics-of-Aristotle_8438/master/8438-8.txt",
+        "title": "Aristotle, Nicomachean Ethics VIII.1 — D. P. Chase, Project Gutenberg via GITenberg",
+        "kind": "quote",
+        "excerpt": "no one would choose to live without friends though he should have all the other good things in the world",
+        "retrievedAt": "2026-10-31T19:12:17.397162Z"
+      }
+    ],
+    "researchedAt": "2026-10-31T19:12:17.397162Z"
+  },
+  {
+    "id": "brian-the-design-the-client-did-not-want",
+    "title": "The design the client did not want",
+    "founder": "Brian Gardner",
+    "company": "Revolution / StudioPress",
+    "event": "A rejected real-estate website design becomes the Revolution commercial theme",
+    "eventDate": "2007-08",
+    "eventKey": "brian-gardner-rejected-real-estate-design-revolution-launch-2007",
+    "industry": "Software and design",
+    "geography": "United States",
+    "tradition": "Stoicism",
+    "quote": {
+      "text": "Men are disturbed not by things, but by the views which they take of things.",
+      "author": "Epictetus",
+      "work": "The Enchiridion",
+      "section": "Section V; Thomas Wentworth Higginson translation, revised Liberal Arts Press edition",
+      "url": "https://raw.githubusercontent.com/GITenberg/The-Enchiridion_45109/master/45109-0.txt"
+    },
+    "paragraphs": [
+      "A real-estate client rejected Brian Gardner’s design. By then Gardner was making websites around a day job, and he thought this particular design was good. It looked less like a simple blog and more like a complete website. He had done the work. The person it was meant for did not want it.",
+      "Gardner’s route into software had been gradual. He worked as a project manager at an architectural firm that designed laboratory spaces for schools and hospitals. He learned WordPress by opening theme files, organising the code so he could understand it, and changing things. In his oral history, he remembered regularly breaking the site as he learned.",
+      "Free themes brought requests for paid customisations. Those requests grew into larger jobs outside working hours. The rejected real-estate design belonged to that uncertain period: a useful skill was beginning to earn money, but there was not yet a settled product business.",
+      "He did not immediately discard the design or declare that the client had failed to understand him. He put the idea on his blog and asked whether anyone would be interested. According to his account, hundreds of comments arrived. That response gave him a different piece of evidence from the rejection. One client’s requirements and a wider group’s needs were not necessarily the same.",
+      "Gardner packaged the design for distribution and put it on sale at RevolutionTheme.com. The WordPress project’s history dates Revolution’s launch to August 2007. In the interview he remembered selling $10,000 in the first month. That is a retrospective founder’s account, rather than an audited sales figure, but the larger change is clear: work intended for one customer became a product offered to many.",
+      "Epictetus’s observation here helps separate an event from the verdict we attach to it. “This client declined this design” is information. “This work has no value” is a much larger conclusion. The philosophy has a limit here: a rejection can contain a real warning about quality or fit. It deserves investigation, not a cheerful reinterpretation on command.",
+      "Caspal, I like how modest Gardner’s next step was. He did not need a complete new identity that afternoon. He asked whether the work might help someone else, and let other people answer. The answer could have been no. Asking was still a sensible way to learn.",
+      "With talQen, a feature that does not fit one laboratory may need revision, a smaller use case, or a place on the shelf. You do not have to turn every disappointment into a breakthrough. You can simply avoid giving it more authority than the evidence supports. Some work will be useful later; some can be put down without making the effort you gave it foolish."
+    ],
+    "invitation": "Choose one recent “no.” Write the specific fact it tells you, without adding a verdict about your ability.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Resources/interviews/2014_03_31_Gardner.txt",
+        "title": "Brian Gardner oral history, March 2014 — WordPress archive",
+        "kind": "story",
+        "excerpt": "I was a project manager at an architectural firm. We designed laboratory space for schools and hospitals and things like that\n\nI had a real estate agent who rejected one of my designs\n\nI got hundreds of comments from that post\n\nSo I created a little site called RevolutionTheme.com and put the theme up there for sale and sold $10,000 in the first month.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Content/Part%204/29-premium-themes.md",
+        "title": "Milestones, chapter 29: Premium Themes",
+        "kind": "story",
+        "excerpt": "Brian Gardner’s Revolution — one of the first premium WordPress themes — launched in August 2007.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Enchiridion_45109/master/45109-0.txt",
+        "title": "The Enchiridion V — Higginson translation, Project Gutenberg via GITenberg",
+        "kind": "quote",
+        "excerpt": "Men are disturbed not by things, but by the views which they take of things.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      }
+    ],
+    "researchedAt": "2026-10-31T19:07:34.642500Z"
+  },
+  {
+    "id": "tim-the-release-that-made-room-for-a-daughter",
+    "title": "The release that made room for a daughter",
+    "founder": "Tim Abbott",
+    "company": "Kandra Labs / Zulip",
+    "event": "Tim Abbott takes several months of paternity leave before the Zulip 4.0 release, then catches up asynchronously",
+    "eventDate": "2021-05",
+    "eventKey": "tim-abbott-zulip-four-paternity-leave-2021",
+    "industry": "Workplace communication",
+    "geography": "United States / global open-source community",
+    "tradition": "Stoicism",
+    "quote": {
+      "text": "Be not therefore ashamed, whensoever thou must use the help of others.",
+      "author": "Marcus Aurelius",
+      "work": "Meditations",
+      "section": "Book VII, section V in Meric Casaubon’s numbering (passage commonly numbered VII.7)",
+      "url": "https://raw.githubusercontent.com/GITenberg/Meditations_2680/master/2680.txt"
+    },
+    "paragraphs": [
+      "When Tim Abbott introduced Zulip 4.0 in May 2021, he explained why the release cycle had been unusually long: he had taken a few months away from work to welcome his daughter, Zoe. The product was a team chat system. His absence had become a very practical test of what the team was building.",
+      "Abbott had founded Kandra Labs in 2016 to steward and sustain Zulip after helping maintain the open-source project during nights and weekends. By 2021, this was work with a history, users and other contributors behind it. Stepping away did not mean that the project stopped producing messages or needing decisions.",
+      "In the account preserved in Zulip’s official history, Abbott said he returned to more than 20,000 messages in the community’s Zulip organisation. That number could make time off sound like a debt waiting at the door. His description, however, focused on how the messages were organised. Zulip grouped conversations into topics, so he could read discussions and contribute where he had something useful to add.",
+      "He said he enjoyed catching up and replying across hundreds of topics. That is his own account of the experience, not evidence that every return from leave is easy. It does show something concrete: conversations had remained available, structured and understandable after the person who founded the company had been away.",
+      "The 4.0 release went out on 13 May 2021. Its public release notes record substantial changes, including making “Recent topics” the default view. The company’s history describes more than 4,300 commits from 137 contributors. This was a collective piece of work. The founder’s contribution mattered, and the product also had to make room for other people’s contributions to remain legible.",
+      "Marcus Aurelius’s instruction here puts accepting help inside the work of responsibility. The surrounding passage asks whether a task can be done alone, delegated, or carried out with someone else. It does not treat solitary effort as the measure of worth. That is a useful challenge when being dependable starts to feel like being permanently available.",
+      "Caspal, a laboratory depends on handovers, records and procedures because a human being cannot remain at the bench forever. The same thought belongs in talQen and in the way you build it. Good notes and a clear owner for the next decision can protect both the work and the person doing it.",
+      "You may not have a large team, or the freedom to take several months away. This episode does not erase those constraints. But perhaps there is one small thing that can become easier to hand over today. Rest becomes more possible when it has somewhere practical to stand: a written next step, a named colleague, a question that can wait until morning."
+    ],
+    "invitation": "Before stopping today, leave a three-line handover: where the work stands, what comes next, and what can wait.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/zulip/zulip/main/templates/corporate/history.md",
+        "title": "Zulip’s official history: 2016 founding and 2021 paternity leave",
+        "kind": "story",
+        "excerpt": "This has been an unusually long release cycle, because I took a few months off work on Zulip to welcome my new daughter Zoe. Coming back to work was a great stress-test of Zulip’s asynchronous model: I received over 20,000 messages in chat.zulip.org during my paternity leave. I really enjoyed reading everything and replying to the hundreds of topics where I had something to contribute or someone to thank.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://github.com/zulip/zulip/releases/tag/4.0",
+        "title": "Zulip Server 4.0 — official release, 13 May 2021",
+        "kind": "story",
+        "excerpt": "Recent topics is no longer beta and is now the default view for Zulip.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/Meditations_2680/master/2680.txt",
+        "title": "Meditations VII — Casaubon translation, Project Gutenberg via GITenberg",
+        "kind": "quote",
+        "excerpt": "Be not therefore ashamed, whensoever thou must use the help of others.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      }
+    ],
+    "researchedAt": "2026-10-31T19:07:34.642500Z"
+  },
+  {
+    "id": "matt-the-company-announced-before-the-salary",
+    "title": "The company announced before the salary",
+    "founder": "Matt Mullenweg",
+    "company": "WordPress Inc. / later Automattic",
+    "event": "The prematurely announced WordPress Inc. fails to establish a paid first employee",
+    "eventDate": "2005-03",
+    "eventKey": "matt-mullenweg-wordpress-inc-jonas-luster-unpaid-launch-2005",
+    "industry": "Software publishing",
+    "geography": "United States",
+    "tradition": "Daoism",
+    "quote": {
+      "text": "He who lightly promises is sure to keep but little faith;",
+      "author": "Laozi",
+      "work": "Tao Teh King (Dao De Jing)",
+      "section": "Chapter 63, paragraph 3; James Legge translation. First clause of a longer sentence.",
+      "url": "https://raw.githubusercontent.com/GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/master/216.txt"
+    },
+    "paragraphs": [
+      "At a San Francisco party in March 2005, Matt Mullenweg announced WordPress Inc. and introduced Jonas Luster as its first employee. People were celebrating WordPress reaching 100,000 downloads. There was enthusiasm, an idea for a business, and someone willing to help build it. There was not yet a settled way to pay him.",
+      "The published WordPress history places the announcement at the Odeon Bar on 22 March. Mullenweg later said the announcement had not been planned: the logistics were unresolved, everyone was excited, and he had been drinking. It is an awkwardly ordinary origin for a promise that other people could understandably take seriously.",
+      "The work behind the idea was real. A growing free-software project needed servers, maintenance and people with time to give it. Mullenweg had been discussing what a business alongside the project could look like. Luster brought experience with open source and the business side of technology. Willingness and a plausible direction were present. A reliable employment arrangement was not.",
+      "In his oral-history interview, Mullenweg acknowledged that the details had not been locked down, including how to pay Luster. Asked whether anything had been formalised or put on paper, he said no. He also recalled having to pause another engagement because he had run out of money. These were material constraints, not a temporary shortage of confidence.",
+      "WordPress Inc. never properly got off the ground. Luster worked unpaid for a period and later went to Technorati; Mullenweg continued at CNET. The history distinguishes that stalled venture from the Automattic business that followed. Its later success cannot retroactively turn the earlier promise into a funded job.",
+      "Laozi’s warning here presses against the excitement of the party. A promise can feel generous when spoken and still become a burden for the person who relies on it. The point is not to become silent about every uncertain plan. It is to keep the size of the commitment close to what you can presently support.",
+      "Caspal, there is a kind of care in telling a colleague or early customer exactly where things stand. “I want to do this, but I cannot commit to the date yet” may feel less impressive than a confident announcement. It gives the other person something more useful: a chance to decide with the same information you have.",
+      "When energy is low, promises can quietly pile up. Each one is a small future task, and some carry another person’s expectations. You do not have to earn trust by sounding certain today. One clear update about a commitment you already made may serve the work better than adding a new one. A smaller, honest promise can leave everyone with firmer ground under their feet."
+    ],
+    "invitation": "Review one promise you have made. If its date or scope is no longer realistic, send a short, honest update today.",
+    "sources": [
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Content/Part%203/15-wordpress-inc.md",
+        "title": "Milestones, chapter 15: WordPress Incorporated",
+        "kind": "story",
+        "excerpt": "At the WordPress 100k party in March 2005, I talked about the formation of a “WordPress Inc.” with Jonas Luster as the first employee. That never really got off the ground, I continued my job at CNET and Jonas (who I couldn’t afford to pay a salary) ended up going to work for Technorati.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Resources/interviews/2014_04_17_Mullenweg.txt",
+        "title": "Matt Mullenweg oral history, April 2014 — WordPress archive",
+        "kind": "story",
+        "excerpt": "there were lots of details not locked down, like how was I going to pay Jonas\n\nInterviewer: Did you ever get anything formalised or on paper?\n\nMullenweg: No.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      },
+      {
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/master/216.txt",
+        "title": "Tao Teh King 63.3 — Legge translation, Project Gutenberg via GITenberg",
+        "kind": "quote",
+        "excerpt": "He who lightly promises is sure to keep but little faith; he who is continually thinking things easy is sure to find them difficult.",
+        "retrievedAt": "2026-10-31T19:07:34.642500Z"
+      }
+    ],
+    "researchedAt": "2026-10-31T19:07:34.642500Z"
+  }
+]

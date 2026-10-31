@@ -1,0 +1,148 @@
+{
+  "generatedAt": "2026-10-31T19:13:00.110Z",
+  "mode": "Simulated clock and delivery transport; real researched reserve; no live phone or AI-provider claim",
+  "timezone": "Africa/Nairobi",
+  "deliveryTime": "08:00",
+  "retry": {
+    "date": "2026-11-02",
+    "originalPreserved": true,
+    "notificationsAfterRetry": 3
+  },
+  "permanentLedgerEntries": 3,
+  "editions": [
+    {
+      "id": "40512ed6-53de-42e7-9e19-4aa645a9014d",
+      "date": "2026-11-01",
+      "title": "The argument Adii outgrew",
+      "founder": "Adii Pienaar",
+      "company": "WooThemes",
+      "event": "WooThemes adopts the GPL after its founder reconsiders his defensive view of open-source licensing",
+      "eventDate": "2009-06",
+      "eventKey": "woothemes-adii-pienaar-gpl-license-change-2009",
+      "quote": {
+        "text": "When you have faults, do not fear to abandon them.",
+        "author": "Confucius",
+        "work": "Analects",
+        "section": "Book I, chapter VIII, paragraph 4; James Legge translation",
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Analects-of-Confucius-from-the-Chinese-Classics_3330/master/3330.txt"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Resources/interviews/2014_03_05_Pienaar.txt",
+          "title": "Adii Pienaar oral history, March 2014 — WordPress archive",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Content/Part%205/31-themes-are-gpl-too.md",
+          "title": "Milestones, chapter 31: Themes are GPL too",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/GITenberg/The-Analects-of-Confucius-from-the-Chinese-Classics_3330/master/3330.txt",
+          "title": "Analects I.8.4 — James Legge, Project Gutenberg text via GITenberg",
+          "kind": "quote",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        }
+      ],
+      "researchedAt": "2026-10-31T19:07:34.642500Z"
+    },
+    {
+      "id": "0f1e98a8-5cbc-4839-aa7e-a671161d4fcc",
+      "date": "2026-11-02",
+      "title": "The two friends who kept the press",
+      "founder": "Benjamin Franklin",
+      "company": "Franklin’s printing business",
+      "event": "Franklin accepts help to resolve printing-shop debts and buys out Hugh Meredith’s partnership",
+      "eventDate": "c. 1729–1730",
+      "eventKey": "benjamin-franklin-hugh-meredith-partnership-debt-coleman-grace-1730",
+      "quote": {
+        "text": "no one would choose to live without friends though he should have all the other good things in the world",
+        "author": "Aristotle",
+        "work": "Nicomachean Ethics",
+        "section": "Book VIII, chapter 1, 1155a; D. P. Chase translation. Clause excerpt.",
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Ethics-of-Aristotle_8438/master/8438-8.txt"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/GITenberg/Autobiography-of-Benjamin-Franklin_20203/master/20203.txt",
+          "title": "Benjamin Franklin, Autobiography, chapter VII — Project Gutenberg via GITenberg",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:12:17.397162Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/GITenberg/The-Age-of-Invention--A-Chronicle-of-Mechanical-Conquest_2900/master/2900.txt",
+          "title": "Holland Thompson, The Age of Invention (1921), chapter I — Project Gutenberg via GITenberg",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:12:17.397162Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/GITenberg/The-Ethics-of-Aristotle_8438/master/8438-8.txt",
+          "title": "Aristotle, Nicomachean Ethics VIII.1 — D. P. Chase, Project Gutenberg via GITenberg",
+          "kind": "quote",
+          "retrievedAt": "2026-10-31T19:12:17.397162Z"
+        }
+      ],
+      "researchedAt": "2026-10-31T19:12:17.397162Z"
+    },
+    {
+      "id": "540e102f-4ba1-445c-8052-6659ebb96f5b",
+      "date": "2026-11-03",
+      "title": "The design the client did not want",
+      "founder": "Brian Gardner",
+      "company": "Revolution / StudioPress",
+      "event": "A rejected real-estate website design becomes the Revolution commercial theme",
+      "eventDate": "2007-08",
+      "eventKey": "brian-gardner-rejected-real-estate-design-revolution-launch-2007",
+      "quote": {
+        "text": "Men are disturbed not by things, but by the views which they take of things.",
+        "author": "Epictetus",
+        "work": "The Enchiridion",
+        "section": "Section V; Thomas Wentworth Higginson translation, revised Liberal Arts Press edition",
+        "url": "https://raw.githubusercontent.com/GITenberg/The-Enchiridion_45109/master/45109-0.txt"
+      },
+      "sources": [
+        {
+          "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Resources/interviews/2014_03_31_Gardner.txt",
+          "title": "Brian Gardner oral history, March 2014 — WordPress archive",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/WordPress/library/trunk/milestones-vol-1/Content/Part%204/29-premium-themes.md",
+          "title": "Milestones, chapter 29: Premium Themes",
+          "kind": "story",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/GITenberg/The-Enchiridion_45109/master/45109-0.txt",
+          "title": "The Enchiridion V — Higginson translation, Project Gutenberg via GITenberg",
+          "kind": "quote",
+          "retrievedAt": "2026-10-31T19:07:34.642500Z"
+        }
+      ],
+      "researchedAt": "2026-10-31T19:07:34.642500Z"
+    }
+  ],
+  "notifications": [
+    {
+      "channel": "push",
+      "title": "The argument Adii outgrew",
+      "editionId": "40512ed6-53de-42e7-9e19-4aa645a9014d",
+      "url": "/?edition=40512ed6-53de-42e7-9e19-4aa645a9014d"
+    },
+    {
+      "channel": "push",
+      "title": "The two friends who kept the press",
+      "editionId": "0f1e98a8-5cbc-4839-aa7e-a671161d4fcc",
+      "url": "/?edition=0f1e98a8-5cbc-4839-aa7e-a671161d4fcc"
+    },
+    {
+      "channel": "push",
+      "title": "The design the client did not want",
+      "editionId": "540e102f-4ba1-445c-8052-6659ebb96f5b",
+      "url": "/?edition=540e102f-4ba1-445c-8052-6659ebb96f5b"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+node_modules/
+.env
+var/
+test-results/
+playwright-report/
+*.log
+android/build/
+*.keystore
+*.jks
+*.p12
+*.pass
