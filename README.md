@@ -1,74 +1,55 @@
 # Founder’s Morning
 
-A private Android-installable PWA for Caspal: one researched founder episode, one verified philosophy quote, and one manageable invitation. The home screen goes straight to today’s reading; archive, saved readings, offline reopening, encouragement and notification settings are included.
+Caspal’s private morning reading: one researched founder episode, one verified philosophy quote, and one manageable invitation. The Android-installable PWA includes today’s reading, archive, favourites, offline reopening and encouragement.
 
-An [offline starter APK](dist/founders-morning-offline.apk) is also available. See [Android installation and build notes](docs/ANDROID.md). It bundles five readings; fresh daily research and notifications use the hosted service described below.
+**Current hosting: scheduled functions on Cloudflare Workers + D1. No continuously running app server or Render service is required.** Requests and a one-minute Cron Trigger start short invocations; D1 retains editions, the permanent story/quote ledger, settings, subscriptions and delivery attempts between them. Default delivery is 08:00 Africa/Nairobi, with research beginning 45 minutes beforehand. The time and timezone can be changed in the app.
 
-## Run locally
+The [offline starter APK](dist/founders-morning-offline.apk) remains available with five bundled readings. Its settings open the hosted PWA once an HTTPS address is connected. [Android installation notes](docs/ANDROID.md) explain the starter’s limits.
 
-Requires **Node.js 24 or newer** (uses built-in SQLite). This task uses the existing checkout; no worktree is required.
+## Serverless setup
+
+Follow [the serverless hosting guide](docs/SERVERLESS.md) for Cloudflare account access, D1 creation, secrets, deployment and Android installation. Cloudflare provides HTTPS on the resulting `workers.dev` address. Replace the placeholder database ID in `wrangler.jsonc` before deploying remotely.
 
 ```sh
-cd /workspace/my-App
 npm ci
-npm run init
-# Open .env privately and use its APP_PASSWORD to sign in.
-npm start
+npm run init:serverless
+# Read your private development password in .dev.vars; add a notification contact if needed.
+npm run migrate:local
+npm run dev:serverless
 ```
 
-On a local computer, open port 3000 in the browser. On a phone, use the HTTPS hosting steps below. The server refuses login until APP_PASSWORD is at least 12 characters. No account signup or public bootstrap endpoint exists. Keep the password in your password manager; do not expose `.env` or `var/`.
+Local development uses Cloudflare’s workerd runtime and a separate local D1 database. Do not run simulated future dates against production history. No Cloudflare deployment has been created by this task.
 
-Default delivery is **08:00 Africa/Nairobi**. A server timer checks every 30 seconds, starts research 45 minutes before delivery, and catches up the current day after downtime. An edition is prepared before delivery and published when due. Before the first delivery, the app shows an honest waiting state. This is one private reading room, not a multi-user service.
+Set production secrets using Wrangler’s prompts or the Cloudflare dashboard: `APP_PASSWORD`, `RESEARCH_API_KEY`, `VAPID_SUBJECT` and the actual HTTPS origin as `APP_URL`. Scheduled notifications need the last value when no browser request is present. Credentials and VAPID private keys stay out of browser assets, Git, the APK and chat. The Cloudflare deployment token is separate and must never become an application binding.
 
-## Host it privately
+## Research and daily publishing
 
-For a beginner-friendly managed HTTPS setup, follow [the Render hosting guide](docs/HOSTING.md). A ready-to-review `render.yaml` is included; no hosting deployment has been performed.
+Five researched reserve readings are bundled; [research notes](docs/RESEARCH.md) document the opened sources, exact quotations, dates and limitations. This initial selection is software-heavy and lacks verified Kenyan/healthcare-company founders; live research prioritises those gaps. Without a research key, the finite reserve works until exhausted, then reports unavailability rather than repeating a story.
 
-1. Choose an always-running Node 24 host with a persistent disk, or a small Linux VM. Serverless functions that sleep cannot run this scheduler. Use **one app instance**; SQLite and scheduler are designed for one process. Point `DATA_DIR` at the persistent disk. Back up the entire directory using SQLite’s backup API or while the server is stopped, including the database/WAL state. It contains editions, permanent event/quote history, subscriptions, sessions and VAPID private keys. Do not reset it when updating the app.
-2. Run `npm ci --omit=dev`. Supply `.env` through your host’s secret settings. Set `APP_PASSWORD` to a long private value, `APP_URL=https://your-domain`, `PORT` as needed, and `VAPID_SUBJECT=mailto:your-real-email`. Keep all AI, research, WhatsApp and push keys on the server. Expose only the `public/` assets through this app, never the project directory as a static site.
-3. Put a managed HTTPS endpoint or reverse proxy in front of port 3000. Forward only from a trusted reverse proxy. An example Caddy config is `your-domain { reverse_proxy 127.0.0.1:3000 }`. Use your host’s process supervisor to restart `npm start`. Configure the host to maintain the correct system clock. No inbound scheduler webhook is exposed.
-4. Check `/api/status` after signing in for reserve count, research jobs and delivery outcomes. Run the validation below before relying on it. This repository has not been deployed to a public host by this task.
+The live pipeline uses OpenAI Responses web search, opens story and original quote sources, checks exact retained excerpts, and runs a separate source and semantic-repeat audit. Candidates are compared with published history and unused reserves, including earlier quotes and their variants. Event, quote and local-date uniqueness constraints protect publication across concurrent invocations and retries. [Provider details](docs/PROVIDERS.md) explain access and evidence checks. Live paid research remains unverified without credentials.
 
-`Dockerfile` is optional. Mount a private persistent directory at `/app/var` and supply secrets with `--env-file`; terminate HTTPS at your reverse proxy. Never bake credentials into the image.
+Each serverless invocation generates at most one candidate. A durable research lease prevents overlapping cron runs from making duplicate requests. Failures preserve the reserve; retries are bounded. D1 retains source links, excerpts, research timestamps and available document hashes. Keep and back up the database across releases—replacing it loses the history needed to avoid repeats.
 
-## Connect fresh research
+## Phone delivery and offline use
 
-Set **RESEARCH_API_KEY** on the server (the standard `OPENAI_API_KEY` alias also works) (never in browser JavaScript). `OPENAI_MODEL` defaults to `gpt-4.1`; choose a Responses API model supporting web search and structured output. There is no separate search key: the server uses OpenAI’s web-search tool, reopens each cited page, checks the exact retained excerpts and quote wording, then performs a second source/non-repetition audit. See [provider details](docs/PROVIDERS.md).
+Open the deployed HTTPS app in Chrome on Android, sign in, and choose **Install app** or **Add to Home screen**. Enable phone notifications in **My ritual**. The scheduled function sends while the app is closed; each notification names and opens its own edition. OS/network delays can affect arrival time.
 
-Run `npm run research` after connecting the provider to verify one new sourced edition and add it to the unused reserve. This makes a paid API request and changes the reserve, without changing today’s edition.
+Opened readings are retained in IndexedDB; favourites stay on that device. Open and save a piece before going offline. Sign-out clears device readings and favourites and attempts to unsubscribe that device. Android storage eviction or uninstalling can remove local content; the published archive stays in D1. The APK starter and PWA have separate local archives.
 
-The initial verified reserve works without an AI key, but it is finite. Configure live research before it runs out. Each research morning replenishes up to three editions toward a five-edition reserve. Source access errors, failed exact-quote checks, uncertain claims or repeat events discard the candidate and preserve the existing reserve. If no verified edition remains, the app reports an unavailable edition rather than inventing or repeating a story. The authenticated status endpoint exposes this condition. AI verification is a useful safeguard, not a guarantee of historical infallibility; the sources remain visible for scrutiny.
+The outbox is unique per edition/channel/device and is claimed atomically before provider I/O. Confirmed rate-limit rejection can retry at most three times. Ambiguous network failures, 5xx responses or interrupted sends are held as uncertain to avoid duplicates. Inspect provider evidence before manually resending. Opt-out cancels pending sends. Provider APIs do not promise exactly-once external delivery.
 
-Allow outbound HTTPS to `api.openai.com` and the publishers selected for research. The code has a conservative publisher allowlist in `src/research.mjs`; use `RESEARCH_ALLOWED_HOSTS` only for additional trusted public publishers. The host’s network policy must also allow those domains. A practical starting set is `www.gutenberg.org`, `classics.mit.edu`, `www.paulgraham.com`, `www.ycombinator.com`, `www.patagonia.com`, `www.npr.org`, `www.shopify.com`, `www.safaricom.co.ke`, `github.com`, `raw.githubusercontent.com` and the credible African news sources listed in the provider guide. A blocked source is never treated as verified. Keep proxy and CA settings when your host supplies them; startup uses Node’s environment-proxy support.
+Optional WhatsApp uses the official Business Platform, an approved template with two body parameters (title and reading URL), configured Worker credentials and explicit in-app consent. It starts disabled. See [the serverless guide](docs/SERVERLESS.md#optional-whatsapp).
 
-Stories permanently record founder, company, event, approximate date, geography, industry and philosophical tradition, with exact source excerpts, retrieval dates and available hashes. Candidate generation and a separate semantic audit compare against the full permanent ledger **and unpublished reserve**, so a new article or headline about the same event does not qualify. Canonical event keys and normalized quote uniqueness add deterministic checks. History grows over time and is sent in full: a context-limit error fails safely to reserve; a larger deployment should add a retrieval index with a full-ledger duplicate audit before reaching that limit.
-
-## Android installation and notifications
-
-1. Open your HTTPS app in Chrome on Android and sign in. Use Chrome’s **Add to Home screen → Install** (or the app’s install action when available).
-2. In the app’s settings, enable phone notifications. Permission must follow a tap. Phone push is the default delivery channel; WhatsApp starts off. Android/Chrome and your OS notification settings must allow notifications. An installed PWA and HTTPS are required for the intended phone experience.
-3. Choose a delivery time; the default timezone is Africa/Nairobi. The server sends while the app is closed. The push contains the story title and the exact edition ID; tapping opens that edition even on a later day. Network/OS power saving can delay arrival; 08:00 is the server send target.
-4. Open and save an edition before going offline. Opened editions are retained in IndexedDB and the app shell in the service worker. Saved IDs stay on that device. Storage can be evicted by Android, private browsing or clearing site data; this is offline convenience, not a substitute for a backup. Logout clears private device readings and favourites.
-
-Allow outbound HTTPS to Android’s push endpoint `fcm.googleapis.com` (and `updates.push.services.mozilla.com` or `web.push.apple.com` if using those browsers). VAPID keys are generated once and retained in the database; replacing them invalidates existing subscriptions. Different phones can each subscribe. A lost phone can be revoked by deleting its subscription in the database; rotating the password alone does not revoke active sessions, so also clear `sessions` when revoking access.
-
-## Optional official WhatsApp delivery
-
-Use a Meta WhatsApp Business account and a registered phone number. Set `WHATSAPP_TOKEN`, `WHATSAPP_PHONE_NUMBER_ID`, `WHATSAPP_TEMPLATE_NAME`, and optionally `WHATSAPP_TEMPLATE_LANGUAGE` and the supported `WHATSAPP_GRAPH_VERSION` (default `v23.0`). Allow outbound `graph.facebook.com`. Obtain an **approved message template with two body parameters in this order: story title, full reading URL**, e.g. “Your Founder’s Morning reading: {{1}}. Read privately: {{2}}”. Approval/category, business verification, recipient testing, access-token lifecycle, current Graph version and Meta fees are your account’s responsibility.
-
-In app settings, enter your international number (e.g. `+254…`) and explicitly opt in. The server will reject activation without consent, a valid number, and configured provider fields. Disable it at any time in settings. A WhatsApp link still requires the private app password; the message contains the title and link, not the full private reading.
-
-## Retry and outage behavior
-
-SQLite enforces one edition per local calendar date and one delivery record per edition/channel/device. Publishing retries preserve the original ID, text, sources and quote. A claimed provider send is recorded before network I/O. Confirmed rate-limit rejections can retry at most three times; expired push subscriptions are removed. Timeout, 5xx or process crashes after claiming are marked **uncertain** and held rather than automatically risking duplicate notifications. This trades a possible missed notification for safety: provider APIs do not guarantee exactly-once delivery. Review provider logs before manually resetting an uncertain delivery to `pending`. Reading access remains available regardless of notification status. Notifications arriving after the fact can replace a same-edition topic on the device.
-
-## Validation
+## Verification and costs
 
 ```sh
 npm test
-npm run simulate
-# Uses installed Chromium by default; override CHROMIUM_PATH if needed.
-npm run test:browser
+npm run test:browser:serverless
+npm run build:serverless
 ```
 
-The simulation uses a temporary database and three successive Nairobi mornings, then retries the second run, keeping real history untouched. Browser tests exercise sign-in, saved/offline reading and a notification-click route. Real Android push reception, Meta delivery, live paid AI calls and public HTTPS hosting require your configured services and device; local mocked transport checks do not establish those integrations work.
+Serverless tests use disposable real D1/workerd instances: three simulated mornings, unchanged retry, concurrent publication and delivery, quote history, encrypted Web Push and opt-out. Browser tests run the same phone interface against the Worker and check offline reload and exact-edition notification handling. Provider transport is mocked; real Android reception, paid AI, WhatsApp and public hosting still need configured accounts and a device.
+
+Workers and D1 offer free quotas; AI and possibly WhatsApp have usage charges. Source verification may exceed Workers Free’s CPU allowance, so zero-cost production operation is not guaranteed. A suitable paid serverless plan or separate scheduled research job can still avoid a continuously running app server. See [capacity details](docs/SERVERLESS.md#costs-and-capacity).
+
+The earlier Node/SQLite implementation remains available for development and regression checks with `npm start`; it is not the selected hosting route. See [Node development reference](docs/NODE-DEVELOPMENT.md). Use the existing isolated checkout; no worktree is required.

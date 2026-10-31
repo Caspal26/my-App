@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "founders-morning",
+  "main": "workers/index.mjs",
+  "compatibility_date": "2026-07-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "founders-morning",
+      // Replace with the ID returned by `wrangler d1 create founders-morning`.
+      // This zero UUID is for local validation only; it is not a deployed database.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "workers/migrations"
+    }
+  ],
+  "triggers": {
+    // Short scheduled invocations; no continuously running application server.
+    "crons": ["* * * * *"]
+  },
+  "observability": {
+    "enabled": true
+  }
+}

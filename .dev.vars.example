@@ -1,0 +1,15 @@
+# Copy to .dev.vars for local Worker development. Never commit the real file.
+# Set a private passphrase of at least 12 characters before signing in.
+APP_PASSWORD=
+# Optional initially: without it, only the finite researched reserve is available.
+RESEARCH_API_KEY=
+OPENAI_MODEL=gpt-4.1
+VAPID_SUBJECT=mailto:you@example.com
+# Local Worker origin. In production, set the actual https://...workers.dev URL.
+APP_URL=http://localhost:8787
+# Optional official WhatsApp Business Platform settings.
+WHATSAPP_TOKEN=
+WHATSAPP_PHONE_NUMBER_ID=
+WHATSAPP_TEMPLATE_NAME=
+WHATSAPP_TEMPLATE_LANGUAGE=en
+WHATSAPP_GRAPH_VERSION=v23.0

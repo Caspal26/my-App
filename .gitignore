@@ -9,3 +9,7 @@ android/build/
 *.jks
 *.p12
 *.pass
+.dev.vars
+.dev.vars.*
+!.dev.vars.example
+.wrangler/
