@@ -2,13 +2,15 @@
 
 Caspal’s private morning reading: one researched founder episode, one verified philosophy quote, and one manageable invitation. The Android-installable PWA includes today’s reading, archive, favourites, offline reopening and encouragement.
 
+**Live app: [founders-morning.caspal26.workers.dev](https://founders-morning.caspal26.workers.dev).** Sign in with your private app password, then install from Chrome on Android.
+
 **Current hosting: scheduled functions on Cloudflare Workers + D1. No continuously running app server or Render service is required.** Requests and a one-minute Cron Trigger start short invocations; D1 retains editions, the permanent story/quote ledger, settings, subscriptions and delivery attempts between them. Default delivery is 08:00 Africa/Nairobi, with research beginning 45 minutes beforehand. The time and timezone can be changed in the app.
 
 The [offline starter APK](dist/founders-morning-offline.apk) remains available with five bundled readings. Its settings open the hosted PWA once an HTTPS address is connected. [Android installation notes](docs/ANDROID.md) explain the starter’s limits.
 
 ## Serverless setup
 
-Follow [the serverless hosting guide](docs/SERVERLESS.md) for Cloudflare account access, D1 creation, secrets, deployment and Android installation. Cloudflare provides HTTPS on the resulting `workers.dev` address. Replace the placeholder database ID in `wrangler.jsonc` before deploying remotely.
+Follow [the serverless hosting guide](docs/SERVERLESS.md) for Cloudflare account access, D1 creation, secrets, deployment and Android installation. Cloudflare provides HTTPS on the resulting `workers.dev` address. The existing production D1 ID is recorded in `wrangler.jsonc`; preserve it across deployments. Use a different database only for an explicitly separate installation.
 
 ```sh
 npm ci
@@ -18,7 +20,7 @@ npm run migrate:local
 npm run dev:serverless
 ```
 
-Local development uses Cloudflare’s workerd runtime and a separate local D1 database. Do not run simulated future dates against production history. No Cloudflare deployment has been created by this task.
+Local development uses Cloudflare’s workerd runtime and a separate local D1 database. Do not run simulated future dates against production history. The production Worker and D1 database are deployed; local development data remains separate.
 
 Set production secrets using Wrangler’s prompts or the Cloudflare dashboard: `APP_PASSWORD`, `RESEARCH_API_KEY`, `VAPID_SUBJECT` and the actual HTTPS origin as `APP_URL`. Scheduled notifications need the last value when no browser request is present. Credentials and VAPID private keys stay out of browser assets, Git, the APK and chat. The Cloudflare deployment token is separate and must never become an application binding.
 

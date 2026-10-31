@@ -1,6 +1,8 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "founders-morning",
+  "account_id": "a30f47f2928f29681dcb92992e8b8b5e",
+  "vars": { "APP_URL": "https://founders-morning.caspal26.workers.dev" },
   "main": "workers/index.mjs",
   "compatibility_date": "2026-07-01",
   "compatibility_flags": ["nodejs_compat"],
@@ -14,9 +16,7 @@
     {
       "binding": "DB",
       "database_name": "founders-morning",
-      // Replace with the ID returned by `wrangler d1 create founders-morning`.
-      // This zero UUID is for local validation only; it is not a deployed database.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "0753505e-75e1-4c95-b2bc-dbf0233fceb5",
       "migrations_dir": "workers/migrations"
     }
   ],

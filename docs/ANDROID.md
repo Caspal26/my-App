@@ -6,6 +6,8 @@ This is the **offline starter** requested before hosting is available. It includ
 
 Fresh automatic research and 08:00 notifications require the separate server. Follow [the HTTPS hosting guide](HOSTING.md). Once it is hosted, enter its HTTPS address in **My ritual → Connect the daily service**. This opens the full online PWA in your browser, where you sign in and enable notifications. The starter APK’s archive/favourites and the PWA’s device storage are separate; they do not automatically sync. No AI credentials, server password or signing private key are bundled in the APK.
 
+The current APK is version **1.1.0-connected-starter** (version code 2). Its connection field defaults to **https://founders-morning.caspal26.workers.dev**. Open **My ritual → Open the online edition** to use the live private PWA. The same signing certificate is retained, so an update can preserve the starter’s local history.
+
 ## Verification performed
 
 - Compiled against Android API 35, minimum API 26; launcher `app.talqen.foundersmorning.MainActivity`.

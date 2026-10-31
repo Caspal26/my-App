@@ -13,6 +13,7 @@ const mf=new Miniflare({
   bindings:{APP_PASSWORD:'browser-test-passphrase-only',APP_URL:'http://127.0.0.1:4173',VAPID_SUBJECT:'mailto:test@example.org'},
   serviceBindings:{ASSETS:async request=>{
     const path=new URL(request.url).pathname;
+    if(path==='/index.html')return Response.redirect(new URL('/',request.url).href,308);
     if(path.includes('..'))return new Response('Not found',{status:404});
     const file=join(publicRoot,path==='/'?'index.html':path);
     try{return new Response(readFileSync(file),{headers:{'Content-Type':contentTypes[extname(file)]||'application/octet-stream'}});}

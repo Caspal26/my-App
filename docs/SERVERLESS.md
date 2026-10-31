@@ -4,7 +4,7 @@ Founder’s Morning can run on **Cloudflare Workers + D1**, with its phone inter
 
 The scheduled Worker checks the saved time and timezone once per minute. It researches before delivery, prepares one immutable edition per local calendar day, and sends through phone push or the optional official WhatsApp API. Default delivery remains **08:00 Africa/Nairobi**; research begins 45 minutes before it. Cron expressions run in UTC, while application decisions use the saved IANA timezone. Changing the delivery time in the app does not require editing a UTC cron expression.
 
-**Deployment status:** the repository contains the serverless implementation and deployment configuration. No Cloudflare account has been connected or remote Worker/D1 database created by this task. The all-zero database ID in `wrangler.jsonc` is a local placeholder, not a live resource. No paid Render service was created; do not retry the previous always-running Render deployment for this workflow.
+**Deployment status:** live at **https://founders-morning.caspal26.workers.dev** on 1 November 2026 (Africa/Nairobi). The Worker, managed HTTPS subdomain, D1 database, schema, app password, notification contact and one-minute Cron Trigger are configured. The first edition was published in a controlled live scheduling check with no subscribed devices; delivery was restored to 08:00 Africa/Nairobi. Live sign-in and a saved reading after a fully offline browser reload passed. `RESEARCH_API_KEY` is still absent: four unused researched reserve editions remain after the first publication. No paid plan was enabled and no Render service was created. Physical Android push arrival remains to be checked after the phone subscribes.
 
 ## Costs and capacity
 
@@ -45,13 +45,15 @@ The existing `npm start` command runs the earlier Node development server; it is
 
 ## Create the persistent D1 database
 
+**This installation already has its production database. Keep ID `0753505e-75e1-4c95-b2bc-dbf0233fceb5` in account `a30f47f2928f29681dcb92992e8b8b5e`. The creation commands below are only for a deliberately new installation. Do not replace the current database or its ledger.**
+
 After authenticating Wrangler:
 
 ```sh
 npx wrangler d1 create founders-morning
 ```
 
-Copy the returned `database_id` into `wrangler.jsonc`, replacing the all-zero placeholder. The ID is not a credential. Preserve the `DB` binding and `workers/migrations` path, then apply the schema:
+For a new installation, copy its returned `database_id` and account ID into `wrangler.jsonc`. The ID is not a credential. Preserve the `DB` binding and `workers/migrations` path, then apply the schema:
 
 ```sh
 npx wrangler d1 migrations apply DB --remote

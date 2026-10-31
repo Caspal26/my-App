@@ -51,3 +51,15 @@ test('encouragement leaves the daily edition and permanent history intact',async
  await page.click('#encouragement-button');await expect(page.locator('#reflection-dialog')).toBeVisible();await expect(page.locator('#reflection-content')).toContainText(/Caspal|talQen|colleague/);
  await page.getByRole('button',{name:'Close reflection'}).click();await expect(page.locator('.reading-top h2')).toHaveText(title);expect(await(await page.request.get('/api/editions')).json()).toEqual(before);
 });
+
+test('opening settings during initial loading keeps settings visible after the older reading response',async({page})=>{
+ let release;
+ const delayed=new Promise(resolve=>{release=resolve;});
+ await page.route('**/api/today',async route=>{const response=await route.fetch();await delayed;await route.fulfill({response});});
+ await page.goto('/');await page.getByLabel('Your private passphrase').fill('browser-test-passphrase-only');
+ await page.getByRole('button',{name:/Open my morning/}).click();await expect(page.locator('#app')).toBeVisible();
+ await page.click('#settings-toggle');await expect(page.locator('#delivery-time')).toBeVisible();
+ const response=page.waitForResponse(r=>r.url().endsWith('/api/today'));release();await(await response).finished();
+ await page.waitForLoadState('networkidle');
+ await expect(page.locator('#delivery-time')).toBeVisible();await expect(page.locator('#main-content')).toContainText('Make room for your morning.');
+});
