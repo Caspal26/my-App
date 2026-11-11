@@ -55,7 +55,3 @@ Serverless tests use disposable real D1/workerd instances: three simulated morni
 Workers and D1 offer free quotas; AI and possibly WhatsApp have usage charges. Source verification may exceed Workers Free’s CPU allowance, so zero-cost production operation is not guaranteed. A suitable paid serverless plan or separate scheduled research job can still avoid a continuously running app server. See [capacity details](docs/SERVERLESS.md#costs-and-capacity).
 
 The earlier Node/SQLite implementation remains available for development and regression checks with `npm start`; it is not the selected hosting route. See [Node development reference](docs/NODE-DEVELOPMENT.md). Use the existing isolated checkout; no worktree is required.
-
-## OMC Advocates website
-
-This repository also contains the static website for OMC Advocates (`omcadvocates.co.ke`) in [`website/`](website/README.md). Build it with `npm run build:website` and upload `website/omc-advocates-public_html.zip` to the cPanel `public_html` folder. It is independent of the Founder’s Morning app.
