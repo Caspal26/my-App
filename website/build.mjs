@@ -9,6 +9,9 @@ import { fileURLToPath } from 'node:url';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const SRC = join(HERE, 'src');
 const OUT = process.env.WEBSITE_OUT || join(HERE, 'public_html');
+// PREVIEW=1 builds a shareable copy for static hosts (Cloudflare Pages, Netlify): hidden from search
+// engines, no PHP or .htaccess, and the contact form explains that it is a preview.
+const PREVIEW = process.env.PREVIEW === '1';
 const cfg = JSON.parse(readFileSync(join(HERE, 'site.config.json'), 'utf8'));
 const firm = cfg.firm;
 const YEAR = new Date().getFullYear();
@@ -119,7 +122,7 @@ function head(ctx) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(ctx.description)}">
+<meta name="description" content="${esc(ctx.description)}">${PREVIEW ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="canonical" href="${esc(canonical)}">
 <meta property="og:type" content="${ctx.layout === 'article' ? 'article' : 'website'}">
 <meta property="og:site_name" content="${esc(firm.name)}">
@@ -281,7 +284,7 @@ ${body}
 function layout(ctx, body) {
   const main = ctx.layout === 'article' ? articleLayout(ctx, body) : pageHero(ctx) + body;
   return `<!doctype html>
-<html lang="en-KE" data-root="${ctx.root}">
+<html lang="en-KE" data-root="${ctx.root}"${PREVIEW ? ' data-preview="1"' : ''}>
 <head>
 ${head(ctx)}
 </head>
@@ -310,7 +313,8 @@ function walk(dir) {
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
 cpSync(join(SRC, 'assets'), join(OUT, 'assets'), { recursive: true });
-cpSync(join(SRC, '.htaccess'), join(OUT, '.htaccess'));
+if (PREVIEW) writeFileSync(join(OUT, '_headers'), '/*\n  X-Robots-Tag: noindex, nofollow\n');
+else cpSync(join(SRC, '.htaccess'), join(OUT, '.htaccess'));
 
 const searchEntries = [];
 const sitemap = [];
@@ -343,13 +347,13 @@ for (const p of cfg.people.filter((x) => filled(x.name))) searchEntries.push({ t
 writeFileSync(join(OUT, 'assets/js/search-index.js'), `window.OMC_SEARCH=${JSON.stringify(searchEntries)};\n`);
 
 const base = firm.url.replace(/\/$/, '');
-writeFileSync(join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`);
+writeFileSync(join(OUT, 'robots.txt'), PREVIEW ? 'User-agent: *\nDisallow: /\n' : `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`);
 writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${sitemap.sort().map((p) => `  <url><loc>${esc(base + '/' + p)}</loc></url>`).join('\n')}\n</urlset>\n`);
 
 // contact.php: inject configuration as PHP string literals
 const phpStr = (v) => `'${String(v ?? '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
 const php = readFileSync(join(SRC, 'contact.php'), 'utf8').replace(/\{\{php:([\w.]+)\}\}/g, (_, k) => phpStr(get(cfg, k)));
-writeFileSync(join(OUT, 'contact.php'), php);
+if (!PREVIEW) writeFileSync(join(OUT, 'contact.php'), php);
 
 // Report what still needs real details
 const todo = [];
@@ -359,7 +363,7 @@ const scan = (obj, path) => {
 };
 scan(cfg, '');
 if (!existsSync(join(OUT, 'assets/img/og-image.png'))) todo.push('assets/img/og-image.png missing: run node website/tools/make-images.mjs');
-console.log(`Built ${sitemap.length} pages into ${relative(process.cwd(), OUT) || OUT}`);
+console.log(`Built ${sitemap.length} pages${PREVIEW ? ' (preview copy)' : ''} into ${relative(process.cwd(), OUT) || OUT}`);
 if (todo.length) {
   console.log(`\n${todo.length} placeholder value(s) still to replace in website/site.config.json:`);
   for (const t of todo) console.log('  - ' + t);

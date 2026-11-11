@@ -250,5 +250,14 @@
     if (sent === '1') { status.hidden = false; status.className = 'form-status ok'; status.textContent = 'Thank you. Your message has been sent and we will be in touch shortly.'; }
     else if (err) { status.hidden = false; status.className = 'form-status err'; status.textContent = messages[err] || messages.server; }
     if (sent || err) status.focus();
+    if (document.documentElement.dataset.preview) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        status.hidden = false;
+        status.className = 'form-status err';
+        status.textContent = 'This is a preview copy of the website, so messages are not sent from here. The form will work once the site is published at omcadvocates.co.ke.';
+        status.focus();
+      });
+    }
   }
 })();
