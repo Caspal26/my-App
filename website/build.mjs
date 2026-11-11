@@ -123,6 +123,7 @@ function head(ctx) {
   }
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>@view-transition{navigation:auto}</style>
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(ctx.description)}">${PREVIEW ? '\n<meta name="robots" content="noindex, nofollow">' : ''}
 <link rel="canonical" href="${esc(canonical)}">
