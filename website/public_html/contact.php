@@ -1,6 +1,6 @@
 <?php
 // Contact form handler for cPanel / shared hosting with PHP.
-// Values in '' are filled in from site.config.json by build.mjs.
+// The configuration values below are filled in from site.config.json by build.mjs.
 declare(strict_types=1);
 date_default_timezone_set('Africa/Nairobi');
 

@@ -10,44 +10,116 @@
 
   /* ================= Site-wide (runs once) ================= */
 
+  /* ---------- Slide helper (a smooth slideDown / slideUp) ---------- */
+  const SLIDE_MS = reduceMotion ? 0 : 260;
+  const slides = new WeakMap();
+  // Animates el's height and vertical padding from its current size to open or closed.
+  // The caller makes el displayable before opening; `done` runs once a close has finished.
+  const slide = (el, opening, done, from) => {
+    const cs = getComputedStyle(el);
+    const running = slides.get(el);
+    // Opening from closed starts at zero; reversing a slide in progress starts where it is now.
+    const start = from || (opening && !running
+      ? { h: 0, pt: '0px', pb: '0px' }
+      : { h: el.getBoundingClientRect().height, pt: cs.paddingTop, pb: cs.paddingBottom });
+    running?.cancel();
+    el.style.overflow = 'hidden';
+    const natural = getComputedStyle(el);
+    const end = opening
+      ? { h: el.getBoundingClientRect().height, pt: natural.paddingTop, pb: natural.paddingBottom }
+      : { h: 0, pt: '0px', pb: '0px' };
+    const finish = () => { if (done) done(); el.style.overflow = ''; slides.delete(el); };
+    if (!SLIDE_MS || !el.animate || (opening && start.h === end.h)) { finish(); return; }
+    const anim = el.animate([
+      { height: start.h + 'px', paddingTop: start.pt, paddingBottom: start.pb },
+      { height: end.h + 'px', paddingTop: end.pt, paddingBottom: end.pb },
+    ], { duration: SLIDE_MS, easing: opening ? 'cubic-bezier(.2,.7,.2,1)' : 'cubic-bezier(.4,0,.6,1)', fill: 'forwards' });
+    slides.set(el, anim);
+    anim.onfinish = () => { finish(); anim.cancel(); };
+  };
+
   /* ---------- Header: mega menus + mobile menu ---------- */
   const header = $('.site-header');
   const items = $$('.nav-item.has-mega');
   const menuToggle = $('.menu-toggle');
-  let hoverTimer;
-  const closeAll = (except) => items.forEach((it) => {
-    if (it === except) return;
+  const nav = $('.primary-nav');
+  const trig = (it) => $('.nav-trigger', it);
+  const megaOf = (it) => $('.mega', it);
+  const isOpen = (it) => trig(it).getAttribute('aria-expanded') === 'true';
+  let openTimer, closeTimer;
+  const hideNow = (it) => {
+    const mega = megaOf(it);
+    slides.get(mega)?.cancel();
+    slides.delete(mega);
+    mega.style.overflow = '';
     it.classList.remove('is-open');
-    $('.nav-trigger', it).setAttribute('aria-expanded', 'false');
-  });
-  const open = (it) => { closeAll(it); it.classList.add('is-open'); $('.nav-trigger', it).setAttribute('aria-expanded', 'true'); };
-  const closeMobileMenu = () => {
-    header?.classList.remove('menu-open');
+    trig(it).setAttribute('aria-expanded', 'false');
+  };
+  const closeItem = (it, instant) => {
+    if (!it.classList.contains('is-open')) return;
+    if (instant) { hideNow(it); return; }
+    if (!isOpen(it)) return; // already closing
+    trig(it).setAttribute('aria-expanded', 'false');
+    slide(megaOf(it), false, () => it.classList.remove('is-open'));
+  };
+  const closeAll = (except, instant) => items.forEach((it) => { if (it !== except) closeItem(it, instant); });
+  const open = (it) => {
+    if (isOpen(it)) return;
+    let from;
+    if (desktop.matches) {
+      // Moving between menus: morph from the visible panel's size instead of closing and reopening.
+      const prev = items.find((x) => x !== it && x.classList.contains('is-open'));
+      if (prev) {
+        const pm = megaOf(prev), cs = getComputedStyle(pm);
+        from = { h: pm.getBoundingClientRect().height, pt: cs.paddingTop, pb: cs.paddingBottom };
+        hideNow(prev);
+      }
+      closeAll(it, true);
+    }
+    it.classList.add('is-open');
+    trig(it).setAttribute('aria-expanded', 'true');
+    slide(megaOf(it), true, null, from);
+  };
+  const setMenuLabel = (txt) => { const l = $('.menu-toggle .label'); if (l) l.textContent = txt; };
+  const openMobileMenu = () => {
+    header.classList.add('menu-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+    setMenuLabel('Close');
+    slide(nav, true);
+  };
+  const closeMobileMenu = (instant) => {
+    if (!header?.classList.contains('menu-open')) return;
     menuToggle?.setAttribute('aria-expanded', 'false');
-    const label = $('.menu-toggle .label'); if (label) label.textContent = 'Menu';
+    setMenuLabel('Menu');
+    const done = () => { header.classList.remove('menu-open'); closeAll(null, true); };
+    if (instant || desktop.matches) { slides.get(nav)?.cancel(); nav.style.overflow = ''; done(); }
+    else slide(nav, false, done);
   };
   items.forEach((it) => {
-    const trigger = $('.nav-trigger', it);
-    trigger.addEventListener('click', () => {
-      if (it.classList.contains('is-open')) { closeAll(); } else { open(it); }
+    trig(it).addEventListener('click', () => { if (isOpen(it)) closeItem(it); else open(it); });
+    // Hover intent: open after a short pause; stay open briefly after the pointer leaves.
+    it.addEventListener('mouseenter', () => {
+      if (!desktop.matches) return;
+      clearTimeout(closeTimer); clearTimeout(openTimer);
+      if (items.some(isOpen)) open(it); else openTimer = setTimeout(() => open(it), 90);
     });
-    it.addEventListener('mouseenter', () => { if (!desktop.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(() => open(it), 120); });
-    it.addEventListener('mouseleave', () => { if (!desktop.matches) return; clearTimeout(hoverTimer); hoverTimer = setTimeout(() => { it.classList.remove('is-open'); trigger.setAttribute('aria-expanded', 'false'); }, 220); });
+    it.addEventListener('mouseleave', () => {
+      if (!desktop.matches) return;
+      clearTimeout(openTimer);
+      closeTimer = setTimeout(() => closeItem(it), 380);
+    });
   });
   document.addEventListener('click', (e) => { if (desktop.matches && header && !header.contains(e.target)) closeAll(); });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    const openItem = items.find((it) => it.classList.contains('is-open'));
-    if (openItem) { closeAll(); $('.nav-trigger', openItem).focus(); }
+    const openItem = items.find(isOpen);
+    if (openItem) { closeAll(); trig(openItem).focus(); }
   });
   header?.addEventListener('focusout', (e) => { if (desktop.matches && !header.contains(e.relatedTarget)) closeAll(); });
   menuToggle?.addEventListener('click', () => {
-    const isOpen = header.classList.toggle('menu-open');
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    $('.menu-toggle .label').textContent = isOpen ? 'Close' : 'Menu';
-    if (!isOpen) closeAll();
+    if (menuToggle.getAttribute('aria-expanded') === 'true') closeMobileMenu(); else openMobileMenu();
   });
-  desktop.addEventListener('change', () => { closeAll(); closeMobileMenu(); });
+  desktop.addEventListener('change', () => { closeAll(null, true); closeMobileMenu(true); });
 
   /* ---------- Site search ---------- */
   const panel = $('#search-panel');
@@ -78,7 +150,7 @@
     hint.textContent = scored.length ? `${scored.length} result${scored.length === 1 ? '' : 's'}` : 'No results. Try a different word, or contact us directly.';
   };
   const openSearch = (q = '') => {
-    if (!panel) return;
+    if (!panel || panel.dataset.closing) return;
     lastFocus = document.activeElement;
     closeAll();
     panel.hidden = false;
@@ -87,11 +159,13 @@
     input.focus();
     runSearch();
   };
-  const closeSearch = (restoreFocus = true) => {
-    if (!panel || panel.hidden) return;
-    panel.hidden = true;
-    document.body.style.overflow = '';
+  const closeSearch = (restoreFocus = true, instant = false) => {
+    if (!panel || panel.hidden || panel.dataset.closing) return;
+    const hide = () => { panel.hidden = true; delete panel.dataset.closing; document.body.style.overflow = ''; };
     if (restoreFocus) lastFocus?.focus?.();
+    if (instant || reduceMotion || !panel.animate) { hide(); return; }
+    panel.dataset.closing = '1';
+    panel.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 160, easing: 'ease' }).onfinish = hide;
   };
   // Delegated so that "Search" buttons inside swapped-in page content also work.
   document.addEventListener('click', (e) => { if (e.target.closest?.('[data-open-search]')) openSearch(); });
@@ -274,6 +348,6 @@
     return () => cleanups.splice(0).forEach((fn) => fn());
   }
 
-  window.OMC = { initPage, closeMenus: () => { closeAll(); closeMobileMenu(); }, closeSearch };
+  window.OMC = { initPage, closeMenus: (instant = true) => { closeAll(null, instant); closeMobileMenu(instant); }, closeSearch };
   if (!window.OMC_SINGLE_FILE) initPage(document, location.search);
 })();

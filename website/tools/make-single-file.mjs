@@ -104,7 +104,7 @@ try {
     document.body.className = 'page-' + tpl.dataset.section;
     markNav(tpl.dataset.section);
     window.OMC.closeMenus();
-    window.OMC.closeSearch(false);
+    window.OMC.closeSearch(false, true);
     cleanup = window.OMC.initPage(main, query);
     const target = anchor && document.getElementById(anchor);
     if (target) target.scrollIntoView({ behavior: 'instant' });
@@ -125,7 +125,7 @@ try {
     const r = resolveHref(href, a);
     if (!r) return;
     const next = route(r.path, r.query, r.anchor);
-    if (location.hash === next) render(); else location.hash = next;
+    if (location.hash === next) go(); else location.hash = next;
   });
   document.addEventListener('submit', (e) => {
     const f = e.target;
@@ -135,7 +135,18 @@ try {
     const qs = new URLSearchParams(new FormData(f)).toString();
     if (r) location.hash = route(r.path, qs ? '?' + qs : '', '');
   });
-  window.addEventListener('hashchange', render);
+  // Smooth page changes: cross-fade with the View Transitions API where available, else a short fade.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const go = () => {
+    if (reduce) return render();
+    if (document.startViewTransition) { document.startViewTransition(render); return; }
+    if (!main.animate) return render();
+    main.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 120, easing: 'ease-in' }).onfinish = () => {
+      render();
+      main.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
+    };
+  };
+  window.addEventListener('hashchange', go);
   render();
 })();`;
 
