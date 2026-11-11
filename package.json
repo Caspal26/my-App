@@ -21,7 +21,9 @@
     "test:serverless": "node --test test/edge-*.test.mjs",
     "test:browser:serverless": "npm run build:serverless && SERVERLESS_TEST=1 playwright test",
     "deploy:serverless": "wrangler deploy",
-    "init:serverless": "node scripts/init-serverless.mjs"
+    "init:serverless": "node scripts/init-serverless.mjs",
+    "build:website": "node website/build.mjs",
+    "package:website": "cd website/public_html && rm -f ../omc-advocates-public_html.zip && zip -qr ../omc-advocates-public_html.zip . -x \".DS_Store\""
   },
   "repository": {
     "type": "git",

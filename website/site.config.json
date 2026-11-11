@@ -1,0 +1,155 @@
+{
+  "firm": {
+    "name": "OMC Advocates",
+    "tagline": "Advocates of the High Court of Kenya",
+    "url": "https://omcadvocates.co.ke",
+    "email": "info@omcadvocates.co.ke",
+    "formSender": "website@omcadvocates.co.ke",
+    "phone": "[Phone number]",
+    "phoneAlt": "",
+    "whatsapp": "",
+    "addressLine1": "[Building name, floor]",
+    "addressLine2": "[Street or road]",
+    "city": "[Town / city]",
+    "country": "Kenya",
+    "postal": "[P.O. Box and postal code]",
+    "hours": "Monday to Friday, 8.00 am to 5.00 pm",
+    "mapEmbedUrl": "",
+    "social": {
+      "linkedin": "",
+      "x": "",
+      "facebook": "",
+      "instagram": ""
+    }
+  },
+
+  "practiceAreas": [
+    {
+      "id": "corporate-commercial",
+      "name": "Corporate & Commercial",
+      "summary": "Company formation, governance, transactions and the contracts that keep a business moving.",
+      "services": ["Company and partnership formation and restructuring", "Board, shareholder and governance advice", "Mergers, acquisitions and joint ventures", "Commercial contracts, agency and distribution", "Regulatory licensing and compliance", "Beneficial ownership and statutory filings"]
+    },
+    {
+      "id": "banking-finance",
+      "name": "Banking & Finance",
+      "summary": "Lending, security and regulatory work for lenders, borrowers and financial institutions.",
+      "services": ["Loan and facility documentation", "Charges, debentures and guarantees", "Perfection and discharge of securities", "Asset and trade finance", "Financial services regulatory advice", "Debt restructuring"]
+    },
+    {
+      "id": "litigation-disputes",
+      "name": "Litigation & Dispute Resolution",
+      "summary": "Representation in courts, tribunals, arbitration and mediation, with early focus on resolution.",
+      "services": ["Commercial and civil litigation", "Arbitration and mediation", "Judicial review and constitutional petitions", "Debt recovery and enforcement", "Insolvency proceedings", "Appeals"]
+    },
+    {
+      "id": "real-estate",
+      "name": "Real Estate & Conveyancing",
+      "summary": "Buying, selling, leasing and financing property, with careful due diligence at every step.",
+      "services": ["Sale and purchase transactions", "Leases and tenancy agreements", "Title due diligence and searches", "Sectional properties and developments", "Charges and property finance", "Land and boundary disputes"]
+    },
+    {
+      "id": "employment",
+      "name": "Employment & Labour",
+      "summary": "Practical advice for employers and employees, from contracts and policies to disputes.",
+      "services": ["Employment contracts and HR policies", "Disciplinary and grievance processes", "Redundancy and restructuring", "Work permits and immigration", "Employment and Labour Relations Court claims", "Workplace investigations"]
+    },
+    {
+      "id": "family-succession",
+      "name": "Family, Succession & Estate Planning",
+      "summary": "Sensitive, discreet support for wills, estates, trusts and family matters.",
+      "services": ["Wills and estate planning", "Probate and letters of administration", "Trusts and family wealth structures", "Matrimonial property", "Divorce, custody and maintenance", "Adoption and guardianship"]
+    },
+    {
+      "id": "data-technology",
+      "name": "Data Protection & Technology",
+      "summary": "Compliance with the Data Protection Act, 2019 and contracts for the digital economy.",
+      "services": ["Data protection compliance programmes", "Registration with the Data Commissioner", "Privacy notices and policies", "Data protection impact assessments", "Breach response", "Technology and software contracts"]
+    },
+    {
+      "id": "intellectual-property",
+      "name": "Intellectual Property",
+      "summary": "Protecting and commercialising brands, creative works and innovation.",
+      "services": ["Trade mark searches and registration", "Copyright advice", "Licensing and franchising", "Brand enforcement and disputes", "IP due diligence"]
+    },
+    {
+      "id": "tax",
+      "name": "Tax",
+      "summary": "Advisory and dispute support on corporate, transactional and individual tax.",
+      "services": ["Transaction tax structuring", "Stamp duty and capital gains tax", "Tax compliance reviews", "Objections and appeals", "Tax Appeals Tribunal representation"]
+    }
+  ],
+
+  "sectors": [
+    "Banking & Financial Services",
+    "Real Estate & Construction",
+    "Technology, Media & Telecoms",
+    "Healthcare",
+    "Agriculture & Agribusiness",
+    "Manufacturing & Trade",
+    "Non-profits & Development",
+    "Private Clients & Families"
+  ],
+
+  "insights": [
+    {
+      "slug": "data-protection-compliance-kenya",
+      "title": "Data protection in Kenya: five steps every business should take",
+      "summary": "The Data Protection Act, 2019 applies to almost every organisation that handles personal data. This briefing sets out the practical steps that reduce risk and build trust with customers and staff.",
+      "topic": "Data Protection",
+      "image": "card-data.svg"
+    },
+    {
+      "slug": "buying-property-due-diligence",
+      "title": "Buying property in Kenya: a due diligence checklist",
+      "summary": "Most land disputes can be traced to checks that were skipped before money changed hands. Here is what a careful buyer verifies before signing and paying.",
+      "topic": "Real Estate",
+      "image": "card-property.svg"
+    },
+    {
+      "slug": "fair-termination-employment-act",
+      "title": "Ending employment fairly: what the Employment Act requires",
+      "summary": "A valid reason and a fair procedure are both essential. We explain the employer’s obligations on termination, redundancy and final dues.",
+      "topic": "Employment",
+      "image": "card-employment.svg"
+    },
+    {
+      "slug": "succession-planning-kenya",
+      "title": "Succession in Kenya: planning ahead and administering an estate",
+      "summary": "How a will, a grant of representation and confirmation of grant fit together, and why acting early protects the people you leave behind.",
+      "topic": "Succession",
+      "image": "card-succession.svg"
+    }
+  ],
+
+  "people": [
+    {
+      "name": "[Partner name]",
+      "role": "Managing Partner",
+      "practices": ["Corporate & Commercial", "Banking & Finance"],
+      "email": "",
+      "bio": "[Two or three sentences about experience, admission year and focus areas.]"
+    },
+    {
+      "name": "[Partner name]",
+      "role": "Partner",
+      "practices": ["Litigation & Dispute Resolution"],
+      "email": "",
+      "bio": "[Two or three sentences about experience, admission year and focus areas.]"
+    },
+    {
+      "name": "[Partner name]",
+      "role": "Partner",
+      "practices": ["Real Estate & Conveyancing", "Family, Succession & Estate Planning"],
+      "email": "",
+      "bio": "[Two or three sentences about experience, admission year and focus areas.]"
+    },
+    {
+      "name": "[Associate name]",
+      "role": "Associate",
+      "practices": ["Employment & Labour", "Data Protection & Technology"],
+      "email": "",
+      "bio": "[Two or three sentences about experience, admission year and focus areas.]"
+    }
+  ]
+}

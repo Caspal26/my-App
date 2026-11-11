@@ -1,0 +1,28 @@
+<!--meta
+{"title":"Our people","description":"Meet the advocates at OMC Advocates and find the right lawyer for your matter.","section":"people","heroTitle":"Our people","heroIntro":"Experienced advocates who take the time to understand your matter and see it through.","heroImage":"hero-lines.svg","crumbs":[["People",null]]}
+-->
+<section class="section" aria-labelledby="find-h">
+  <h2 class="visually-hidden" id="find-h">Find a lawyer</h2>
+  <div class="people-tools" role="search">
+    <div>
+      <label for="people-search">Search by name</label>
+      <input id="people-search" type="search" placeholder="Enter a name or role" autocomplete="off">
+    </div>
+    <div>
+      <label for="people-practice">Practice area</label>
+      <select id="people-practice">
+        <option value="">All practice areas</option>
+        {{@practiceOptions}}
+      </select>
+    </div>
+  </div>
+  {{@peopleGrid}}
+</section>
+
+<section class="cta-band" aria-labelledby="cta-h">
+  <div>
+    <h2 id="cta-h">Join our team</h2>
+    <p>We are always interested in hearing from talented advocates, pupils and support staff.</p>
+  </div>
+  <div class="actions"><a class="btn" href="{{root}}careers.html">Careers at {{firm.name}}</a></div>
+</section>
