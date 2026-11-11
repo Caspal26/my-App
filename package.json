@@ -24,7 +24,8 @@
     "init:serverless": "node scripts/init-serverless.mjs",
     "build:website": "node website/build.mjs",
     "package:website": "cd website/public_html && rm -f ../omc-advocates-public_html.zip && zip -qr ../omc-advocates-public_html.zip . -x \".DS_Store\"",
-    "preview:website": "rm -rf var/omc-preview && PREVIEW=1 WEBSITE_OUT=var/omc-preview node website/build.mjs && cd var/omc-preview && rm -f ../omc-advocates-preview.zip && zip -qr ../omc-advocates-preview.zip ."
+    "preview:website": "rm -rf var/omc-preview && PREVIEW=1 WEBSITE_OUT=var/omc-preview node website/build.mjs && cd var/omc-preview && rm -f ../omc-advocates-preview.zip && zip -qr ../omc-advocates-preview.zip .",
+    "single:website": "node website/tools/make-single-file.mjs"
   },
   "repository": {
     "type": "git",

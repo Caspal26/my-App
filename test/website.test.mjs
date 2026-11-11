@@ -45,3 +45,16 @@ test('website builds and every internal reference resolves', (t) => {
   assert.ok(entries.length > 20, 'search index should cover pages, practice areas and insights');
   for (const e of entries) assert.ok(existsSync(join(out, e.u.split(/[?#]/)[0])), `search entry points nowhere: ${e.u}`);
 });
+
+test('single-file preview contains every page and no external image references', (t) => {
+  const dir = mkdtempSync(join(tmpdir(), 'omc-single-test-'));
+  t.after(() => rmSync(dir, { recursive: true, force: true }));
+  const file = join(dir, 'site.html');
+  execFileSync(process.execPath, [join(repo, 'website/tools/make-single-file.mjs'), file], { stdio: 'pipe' });
+  const html = readFileSync(file, 'utf8');
+  const pages = [...html.matchAll(/<template data-path="([^"]+)"/g)].map((m) => m[1]);
+  for (const p of ['index.html', 'expertise.html', 'people.html', 'insights.html', 'contact.html', '404.html', 'insights/succession-planning-kenya.html']) assert.ok(pages.includes(p), `missing page ${p}`);
+  assert.doesNotMatch(html, /src="[^"]*assets\/img\//, 'images must be embedded');
+  assert.match(html, /data-preview="1"/);
+  assert.match(html, /<meta name="robots" content="noindex, nofollow">/);
+});
