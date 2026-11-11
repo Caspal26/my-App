@@ -9,6 +9,7 @@ import { dirname, join, posix, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const repo = join(dirname(fileURLToPath(import.meta.url)), '..');
+const showPeople = JSON.parse(readFileSync(join(repo, 'website/site.config.json'), 'utf8')).features?.people !== false;
 const walk = (d) => readdirSync(d).flatMap((n) => (statSync(join(d, n)).isDirectory() ? walk(join(d, n)) : [join(d, n)]));
 
 test('website builds and every internal reference resolves', (t) => {
@@ -17,10 +18,11 @@ test('website builds and every internal reference resolves', (t) => {
   execFileSync(process.execPath, [join(repo, 'website/build.mjs')], { env: { ...process.env, WEBSITE_OUT: out }, stdio: 'pipe' });
 
   const files = walk(out).map((f) => relative(out, f).split(sep).join('/'));
-  for (const required of ['index.html', 'expertise.html', 'people.html', 'insights.html', 'about.html', 'careers.html', 'contact.html', 'privacy.html', 'legal.html', '404.html', 'contact.php', '.htaccess', 'robots.txt', 'sitemap.xml', 'assets/js/search-index.js', 'assets/img/logo.svg', 'assets/img/og-image.png']) {
+  for (const required of [...(showPeople ? ['people.html'] : []), 'index.html', 'expertise.html', 'insights.html', 'about.html', 'careers.html', 'contact.html', 'privacy.html', 'legal.html', '404.html', 'contact.php', '.htaccess', 'robots.txt', 'sitemap.xml', 'assets/js/search-index.js', 'assets/img/logo.svg', 'assets/img/og-image.png']) {
     assert.ok(files.includes(required), `missing ${required}`);
   }
 
+  if (!showPeople) assert.ok(!files.includes('people.html'), 'people page must not be published while hidden');
   const pages = files.filter((f) => f.endsWith('.html'));
   const ids = new Map(pages.map((p) => [p, new Set([...readFileSync(join(out, p), 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))]));
   const problems = [];
@@ -53,8 +55,9 @@ test('single-file preview contains every page and no external image references',
   execFileSync(process.execPath, [join(repo, 'website/tools/make-single-file.mjs'), file], { stdio: 'pipe' });
   const html = readFileSync(file, 'utf8');
   const pages = [...html.matchAll(/<template data-path="([^"]+)"/g)].map((m) => m[1]);
-  for (const p of ['index.html', 'expertise.html', 'people.html', 'insights.html', 'contact.html', '404.html', 'insights/succession-planning-kenya.html']) assert.ok(pages.includes(p), `missing page ${p}`);
+  for (const p of [...(showPeople ? ['people.html'] : []), 'index.html', 'expertise.html', 'insights.html', 'contact.html', '404.html', 'insights/succession-planning-kenya.html']) assert.ok(pages.includes(p), `missing page ${p}`);
   assert.doesNotMatch(html, /src="[^"]*assets\/img\//, 'images must be embedded');
+  if (!showPeople) assert.doesNotMatch(html, /people\.html|Managing Partner/, 'hidden people section must not appear');
   assert.match(html, /data-preview="1"/);
   assert.match(html, /<meta name="robots" content="noindex, nofollow">/);
 });

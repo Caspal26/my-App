@@ -1,4 +1,8 @@
 {
+  "features": {
+    "people": false
+  },
+
   "firm": {
     "name": "OMC Advocates",
     "tagline": "Advocates of the High Court of Kenya",

@@ -15,6 +15,8 @@ const PREVIEW = process.env.PREVIEW === '1';
 const cfg = JSON.parse(readFileSync(join(HERE, 'site.config.json'), 'utf8'));
 const firm = cfg.firm;
 const YEAR = new Date().getFullYear();
+// Optional sections that can be switched off in site.config.json ("features") and turned on later.
+const SHOW_PEOPLE = cfg.features?.people !== false;
 
 // ---------- helpers ----------
 const esc = (s = '') => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -163,7 +165,7 @@ function header(ctx) {
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav"><span class="label">Menu</span><span class="bars" aria-hidden="true"><i></i></span></button>
     <nav class="primary-nav" id="primary-nav" aria-label="Main">
       <ul class="nav-list">
-${mega('people', 'People', 'Meet the advocates who will work on your matter.',
+${!SHOW_PEOPLE ? '' : mega('people', 'People', 'Meet the advocates who will work on your matter.',
     col('Find a lawyer', `<form class="mega-search" action="${r}people.html" method="get" role="search"><label class="visually-hidden" for="mega-q">Search people by name</label><input id="mega-q" name="q" type="search" placeholder="Enter a name"><button class="btn" type="submit">Search</button></form><a class="mega-visit" href="${r}people.html">View all people</a>`) +
     col('By practice area', `<ul>${practices.slice(0, 5).map((p) => `<li><a href="${r}people.html?practice=${encodeURIComponent(p.name)}">${esc(p.name)}</a></li>`).join('')}</ul>`) +
     col('Our office', `<p style="font-size:15px;color:var(--muted);margin:0 0 8px">${blocks.address()}</p><a class="mega-visit" href="${r}contact.html">Contact and directions</a>`),
@@ -207,8 +209,7 @@ function footer(ctx) {
   <div><a class="footer-mark" href="${r}index.html"><img src="${r}assets/img/logo-white.svg" alt="${esc(firm.name)}, home" width="177" height="66" loading="lazy"></a></div>
   <ul>
     <li><a href="${r}expertise.html">Expertise</a></li>
-    <li><a href="${r}people.html">People</a></li>
-    <li><a href="${r}insights.html">Insights</a></li>
+${SHOW_PEOPLE ? `    <li><a href="${r}people.html">People</a></li>\n` : ''}    <li><a href="${r}insights.html">Insights</a></li>
     <li><a href="${r}about.html">About us</a></li>
     <li><a href="${r}careers.html">Careers</a></li>
   </ul>
@@ -324,6 +325,7 @@ for (const file of walk(join(SRC, 'pages')).filter((f) => f.endsWith('.html'))) 
   const m = raw.match(/^<!--meta\s*([\s\S]*?)-->\s*/);
   if (!m) throw new Error(`Missing meta block in ${path}`);
   const meta = JSON.parse(m[1]);
+  if (meta.feature === 'people' && !SHOW_PEOPLE) continue; // section switched off in site.config.json
   const depth = path.split('/').length - 1;
   const ctx = { ...meta, path, root: meta.root ?? '../'.repeat(depth) };
   const body = renderTokens(raw.slice(m[0].length), ctx);
@@ -343,7 +345,7 @@ for (const i of cfg.insights) {
   const e = searchEntries.find((x) => x.u === `insights/${i.slug}.html`);
   if (e) { e.s = `Insight · ${i.topic}`; e.k = i.summary; }
 }
-for (const p of cfg.people.filter((x) => filled(x.name))) searchEntries.push({ t: p.name, d: [p.role, ...(p.practices || [])].join(', '), u: `people.html?q=${encodeURIComponent(p.name)}`, s: 'People' });
+for (const p of (SHOW_PEOPLE ? cfg.people : []).filter((x) => filled(x.name))) searchEntries.push({ t: p.name, d: [p.role, ...(p.practices || [])].join(', '), u: `people.html?q=${encodeURIComponent(p.name)}`, s: 'People' });
 writeFileSync(join(OUT, 'assets/js/search-index.js'), `window.OMC_SEARCH=${JSON.stringify(searchEntries)};\n`);
 
 const base = firm.url.replace(/\/$/, '');
@@ -361,7 +363,8 @@ const scan = (obj, path) => {
   if (typeof obj === 'string') { if (isPlaceholder(obj)) todo.push(`${path}: ${obj}`); return; }
   if (obj && typeof obj === 'object') for (const [k, v] of Object.entries(obj)) scan(v, path ? `${path}.${k}` : k);
 };
-scan(cfg, '');
+scan(SHOW_PEOPLE ? cfg : { ...cfg, people: [] }, '');
+if (!SHOW_PEOPLE) todo.push('(People page is hidden: set "features": { "people": true } to publish it once names and bios are filled in)');
 if (!existsSync(join(OUT, 'assets/img/og-image.png'))) todo.push('assets/img/og-image.png missing: run node website/tools/make-images.mjs');
 console.log(`Built ${sitemap.length} pages${PREVIEW ? ' (preview copy)' : ''} into ${relative(process.cwd(), OUT) || OUT}`);
 if (todo.length) {

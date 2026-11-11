@@ -25,7 +25,7 @@ It is a plain static site (HTML, CSS and JavaScript, plus one small PHP file for
 | --- | --- |
 | Home: banner, statement, insights, practice highlights | `index.html` |
 | Expertise: all practice areas and sectors | `expertise.html` |
-| People: searchable team directory | `people.html` |
+| People: searchable team directory (hidden for now; see below) | `people.html` |
 | Insights: four briefings with a topic filter | `insights.html`, `insights/*.html` |
 | About us, Careers, Contact | `about.html`, `careers.html`, `contact.html` |
 | Privacy notice (Data Protection Act, 2019), Legal notices, 404 | `privacy.html`, `legal.html`, `404.html` |
@@ -38,7 +38,7 @@ Every detail only the firm can supply is in **one file**, `website/site.config.j
 
 1. **Contact details**: `phone`, `addressLine1`, `addressLine2`, `city`, `postal`, `hours`.
 2. **Email**: `email` is where contact-form messages go. `formSender` is the address they are sent from. Create both mailboxes (or forwarders) in cPanel → Email Accounts, or change them.
-3. **People**: replace the four placeholder entries with real names, roles, practice areas, short bios and (optionally) emails. To add a portrait, put a photo in `website/src/assets/img/people/` and add `"photo": "file-name.jpg"` to that person.
+3. **People** (currently hidden): the team directory is switched off with `"features": { "people": false }`, so the page, its menu and footer links, and its search entries are not published. When you are ready, replace the four placeholder entries with real names, roles, practice areas, short bios and (optionally) emails, then change it to `true` and rebuild. To add a portrait, put a photo in `website/src/assets/img/people/` and add `"photo": "file-name.jpg"` to that person.
 4. **Practice areas and sectors**: edit, remove or add entries so they match what the firm actually offers.
 5. **Map and social links** (optional): add a Google Maps embed URL to `mapEmbedUrl`, and LinkedIn, X, Facebook or Instagram URLs. Their icons appear in the footer automatically.
 6. **Review the wording**: the firm statement, careers text (pupillage and attachments) and the four Insights articles. The articles are general guides to Kenyan law; have an advocate confirm them before publishing. Check all content against the Law Society of Kenya's marketing and advertising rules for advocates.
